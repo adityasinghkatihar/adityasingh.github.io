@@ -1,152 +1,494 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Aditya Singh | Portfolio</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #ffffff;
-    color: #111;
-    line-height: 1.6;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditya Singh | Portfolio</title>
+  <meta name="description" content="Experimental biologist transitioning into computational biology and AI/ML. Host–pathogen interactions, cell-state logic, mechanistic modeling." />
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 40px 20px;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 
-h1, h2 {
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-}
-
-.section {
-    margin-bottom: 40px;
-}
-
-a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-.highlight {
-    color: #444;
-}
-
-</style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <a class="skip-link" href="#home">Skip to content</a>
 
-<div class="container">
+  <header class="site-header" role="banner">
+    <div class="nav-wrap">
+      <div class="brand">
+        <span class="brand-name">Aditya Singh</span>
+        <span class="brand-tag">Life Sciences Researcher</span>
+      </div>
 
-    <!-- HEADER -->
-    <h1>Aditya Singh</h1>
-    <p class="highlight">
-        Experimental Biologist | Host–Pathogen Interactions | Transitioning into Computational Biology
-    </p>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#modules">Active Modules</a>
+        <a class="nav-link" href="#projects">Research</a>
+        <a class="nav-link" href="#experience">Education & Experience</a>
+        <a class="nav-link" href="#links">Links</a>
+        <a class="nav-link nav-cta" href="#contact">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero section-pad" data-reveal>
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <p class="kicker">Experimental Biologist • Cellular Systems & Disease Biology • Integrating Experimental and Computational Approaches</p>
+
+          <h1 class="hero-title">
+            How do cells decide what state to adopt, and can we formalize that logic computationally?
+          </h1>
+
+          <p class="hero-subtitle">
+            From adaptive responses to cell fate decisions: understanding how cells choose identity.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">Explore my research</a>
+            <a class="btn ghost" href="#contact">Discuss PhD fit</a>
+          </div>
+
+          <div class="hero-mini" aria-label="Quick positioning">
+            <div class="mini-item">
+              <span class="mini-label">Focus</span>
+              <span class="mini-value">Mechanisms → models</span>
+            </div>
+            <div class="mini-item">
+              <span class="mini-label">Systems</span>
+              <span class="mini-value">Metabolism & proteases</span>
+            </div>
+            <div class="mini-item">
+              <span class="mini-label">Bridge</span>
+              <span class="mini-value">Wet lab → formal inference</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-right" aria-label="Profile and availability">
+          <div class="avatar">
+            <img src="assets/profile.jpg" alt="Portrait of Aditya Singh" loading="lazy"
+                 onerror="this.style.display='none'; this.parentElement.querySelector('.avatar-fallback').style.display='block';" />
+            <div class="avatar-fallback" style="display:none;">Add <strong>assets/profile.jpg</strong></div>
+          </div>
+
+          <div class="availability-card" data-reveal>
+            <span class="status-dot" aria-hidden="true"></span>
+            <p class="availability-text">
+              Open to PhD discussions on cell-state logic under pressure, host–pathogen systems, and computational modeling bridges.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
 
     <!-- ABOUT -->
-    <div class="section">
-        <h2>About</h2>
-        <p>
-        I work at the intersection of host–pathogen biology and metabolic regulation, focusing on how 
-        <b>Candida glabrata</b> adapts within the host environment. My work explores protease-driven 
-        metabolic reprogramming and its implications for pathogen survival and immune evasion.
-        </p>
+    <section id="about" class="section-pad section-alt" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <h2>Who I am (and why it matters)</h2>
+          <p class="section-lead">
+            I’m a mechanism-first biologist who wants to translate biological decision-making into formal computational logic.
+          </p>
+        </div>
 
-        <p>
-        I am currently extending my work into computational biology and machine learning, aiming to 
-        integrate experimental systems with predictive modeling to better understand biological complexity.
-        </p>
-    </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">Research identity</h3>
+            <p class="card-body">
+              Working with <strong>Candida glabrata</strong> taught me to treat biology as an adaptive system with agency.
+              I’m now focused on formalizing how environmental pressure maps to strategy shifts—metabolically and proteolytically—
+              and how that logic can be modeled for prediction and hypothesis generation.
+            </p>
+          </div>
 
-    <!-- RESEARCH -->
-    <div class="section">
-        <h2>Research Experience</h2>
+          <div class="card">
+            <h3 class="card-title">Pros (what you can trust)</h3>
+            <div class="pill-list" role="list">
+              <span class="pill" role="listitem">Rapid assimilation of new techniques</span>
+              <span class="pill" role="listitem">Cross-disciplinary adaptability (wet lab → computational)</span>
+              <span class="pill" role="listitem">Data-driven hypothesis refinement</span>
+              <span class="pill" role="listitem">Mechanistic reasoning across biological scales</span>
+              <span class="pill" role="listitem">Strong experimental design under complex conditions</span>
+            </div>
+          </div>
+        </div>
 
-        <p><b>Project Associate — CDFD, Hyderabad (2024–2026)</b></p>
-        <ul>
-            <li>Host–pathogen interaction studies using macrophage infection models</li>
-            <li>Dual-species transcriptomics and metabolomics integration</li>
-            <li>Protein purification (IMAC, SEC, ÄKTA FPLC systems)</li>
-            <li>Protein–protein interaction validation</li>
-            <li>Murine infection models for virulence studies</li>
-        </ul>
+        <div class="grid-2" style="margin-top:16px;">
+          <div class="card subtle">
+            <h3 class="card-title">Growth areas (where I’m leveling up)</h3>
+            <div class="pill-list" role="list">
+              <span class="pill" role="listitem">Optimization of model interpretability in biological contexts</span>
+              <span class="pill" role="listitem">Expanding mathematical intuition for dynamic systems</span>
+              <span class="pill" role="listitem">Advanced ML model development (beyond classical ML)</span>
+              <span class="pill" role="listitem">Translating biological problems into formal computational frameworks</span>
+              <span class="pill" role="listitem">Building scalable and reusable data pipelines</span>
+            </div>
+          </div>
 
-        <p><b>Product Sustainability Consultant — Rayontec (2023–2024)</b></p>
-        <ul>
-            <li>Developed waste-management product prototype</li>
-            <li>Worked on sustainable manufacturing models</li>
-        </ul>
-    </div>
+          <div class="card subtle">
+            <h3 class="card-title">Transition note (honest + focused)</h3>
+            <p class="card-body">
+              I’m not moving into computation to “follow the trend.”
+              I’m moving because the biological questions I keep facing (state choice under pressure, regulatory logic, and prediction from complex data)
+              demand formal modeling—not only measurement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- PROJECTS -->
-    <div class="section">
-        <h2>Projects</h2>
+    <!-- ACTIVE MODULES -->
+    <section id="modules" class="section-pad section-alt" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <h2>Active Modules</h2>
+          <p class="section-lead">
+            Categorized work areas designed to be scannable by a supervisor.
+          </p>
+        </div>
 
-        <p><b>CRISPR/Cas9 Gene Editing in Solanum melongena</b></p>
-        <ul>
-            <li>Designed knockout vector targeting PDS gene</li>
-            <li>Validated gene editing via Agrobacterium transformation</li>
-        </ul>
+        <div class="modules-grid">
+          <div class="module-card" data-reveal>
+            <h3>Wet Lab & Molecular Techniques</h3>
+            <ul class="list">
+              <li>Protein purification (IMAC, SEC/FPLC)</li>
+              <li>Expression/solubility troubleshooting</li>
+              <li>Immunoprecipitation & pull-down validation</li>
+              <li>Affinity chromatography workflow design</li>
+            </ul>
+            <details class="details">
+              <summary>What I’m improving right now</summary>
+              <p class="details-body">
+                Tighter linkage between bench decisions and model-relevant features (inputs, quality checks, and what the model should “see”).
+              </p>
+            </details>
+          </div>
 
-        <p><b>Upcoming: ML + Biology Project</b></p>
-        <ul>
-            <li>Prediction of biological function from experimental datasets</li>
-            <li>Integration of omics data with machine learning models</li>
-        </ul>
+          <div class="module-card" data-reveal>
+            <h3>Host–Pathogen State Systems</h3>
+            <ul class="list">
+              <li><strong>Candida glabrata</strong> adaptation in host-like conditions</li>
+              <li>Metabolic reprogramming under stress</li>
+              <li>Protease-driven functional shifts</li>
+              <li>Dual-omics dataset generation support</li>
+            </ul>
+            <details class="details">
+              <summary>My current modeling target</summary>
+              <p class="details-body">
+                State-switching as a decision/inference process: how pressure maps to molecular strategy.
+              </p>
+            </details>
+          </div>
 
-    </div>
+          <div class="module-card" data-reveal>
+            <h3>Computational & ML</h3>
+            <ul class="list">
+              <li>AI-assisted scripting for data workflows</li>
+              <li>Dynamic systems intuition (conceptual)</li>
+              <li>Pattern discovery in high-dimensional biological data</li>
+              <li>Model interpretability emphasis</li>
+            </ul>
+            <details class="details">
+              <summary>Where computation connects to biology</summary>
+              <p class="details-body">
+                Models that reflect mechanism and can suggest bench experiments—not just prediction.
+              </p>
+            </details>
+          </div>
 
-    <!-- SKILLS -->
-    <div class="section">
-        <h2>Skills</h2>
+          <div class="module-card" data-reveal>
+            <h3>Data Pipelines</h3>
+            <ul class="list">
+              <li>Reproducible analysis habits</li>
+              <li>Scalable dataset handling mindset</li>
+              <li>Bridging wet-lab outputs to computational inputs</li>
+            </ul>
+            <details class="details">
+              <summary>Pipeline philosophy</summary>
+              <p class="details-body">
+                If a pipeline can’t explain inputs/assumptions/quality checks, it isn’t ready for biological interpretation.
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <p><b>Wet Lab</b></p>
-        <ul>
-            <li>Protein purification (IMAC, SEC, FPLC)</li>
-            <li>Cell culture (THP1, A498)</li>
-            <li>CRISPR, cloning, transformation (E. coli, yeast)</li>
-            <li>Microscopy (confocal, immunofluorescence)</li>
-        </ul>
+    <!-- RESEARCH / PROJECTS -->
+    <section id="projects" class="section-pad" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <h2>Research / Projects</h2>
+          <p class="section-lead">Hover for motion. Expand “details” for bench reasoning.</p>
+        </div>
 
-        <p><b>Computational</b></p>
-        <ul>
-            <li>AlphaFold, PyMOL, AutoDock</li>
-            <li>LC-MS/MS data analysis</li>
-            <li>RStudio (beginner), AI-assisted scripting</li>
-        </ul>
-    </div>
+        <!-- Simple image slider (placeholders until you add assets) -->
+        <div class="slider" data-reveal aria-label="Research slider">
+          <input type="radio" name="slider" id="s1" checked />
+          <input type="radio" name="slider" id="s2" />
+          <input type="radio" name="slider" id="s3" />
 
-    <!-- EDUCATION -->
-    <div class="section">
-        <h2>Education</h2>
-        <p>M.Sc. Biotechnology — Kakatiya University</p>
-        <p>M.Tech Biotechnology — NIT Bhopal</p>
-    </div>
+          <div class="slides-track">
+            <figure class="slide">
+              <div class="slide-media slide1" aria-hidden="true"></div>
+              <figcaption>
+                <strong>Yapsin-linked metabolic adaptation</strong>
+                <span>Protease role under host-like stress • mechanistic bench reasoning</span>
+              </figcaption>
+            </figure>
 
-    <!-- ACHIEVEMENTS -->
-    <div class="section">
-        <h2>Achievements</h2>
-        <ul>
-            <li>GATE 2023 — Top 10%</li>
-            <li>Asia Chromatin Meeting 2025 — Presentation</li>
-            <li>National Science Convention — Presentation</li>
-        </ul>
-    </div>
+            <figure class="slide">
+              <div class="slide-media slide2" aria-hidden="true"></div>
+              <figcaption>
+                <strong>Host–pathogen dataset building (CDFD)</strong>
+                <span>Dual-species transcriptomic support • metabolomics integration</span>
+              </figcaption>
+            </figure>
+
+            <figure class="slide">
+              <div class="slide-media slide3" aria-hidden="true"></div>
+              <figcaption>
+                <strong>Protein purification & interaction validation</strong>
+                <span>IMAC + FPLC-SEC • PPI validation experiments</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="slider-dots" aria-hidden="true">
+            <label for="s1"></label>
+            <label for="s2"></label>
+            <label for="s3"></label>
+          </div>
+        </div>
+
+        <div class="project-grid" style="margin-top:18px;">
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <h3 class="project-title">Yapsin-linked metabolic adaptation</h3>
+              <span class="project-tag">Host-like stress • Proteases • Metabolism</span>
+            </div>
+
+            <p class="project-line">
+              Tested protease role under host-like stress; optimized induction + purification + interaction assays; identified candidate metabolic interaction pattern.
+            </p>
+
+            <details class="details">
+              <summary>Bench reasoning (what I learned)</summary>
+              <ul class="bullets">
+                <li>Reasoned from metabolic burden to modify induction timing for improved expression/solubility.</li>
+                <li>Optimized solubilization before affinity purification to reduce non-specific expression.</li>
+                <li>Validated protein–protein interactions via immunoprecipitation and immuno-pulldown assays.</li>
+                <li>Used results to refine hypotheses about functional metabolic coupling in stress conditions.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <h3 class="project-title">Host–pathogen dataset building (CDFD)</h3>
+              <span class="project-tag">Dual-species • Transcriptomics • Metabolomics</span>
+            </div>
+
+            <p class="project-line">
+              Contributed to generation of datasets for dual-species transcriptomic studies, integrating metabolomics approaches with targeted biochemical assays.
+            </p>
+
+            <details class="details">
+              <summary>Why it matters for computation</summary>
+              <ul class="bullets">
+                <li>Controls and measurement validity determine what patterns are even learnable.</li>
+                <li>Multi-modal integration requires careful feature mapping and quality checks.</li>
+                <li>Small protocol decisions change the biological signal we can model.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <h3 class="project-title">Protein purification & interaction validation</h3>
+              <span class="project-tag">IMAC • FPLC-SEC • PPI validation</span>
+            </div>
+
+            <p class="project-line">
+              Optimized expression/solubility; purified via affinity chromatography and FPLC-based size exclusion; designed experiments to validate protein–protein interactions.
+            </p>
+
+            <details class="details">
+              <summary>Bench-to-logic translation</summary>
+              <ul class="bullets">
+                <li>Treated experimental variability as information when measured correctly.</li>
+                <li>Improved reliability so downstream biological inference is meaningful.</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+
+        <div class="publication-note" data-reveal>
+          <h3>Publications</h3>
+          <p class="card-body" style="margin-top:6px;">
+            No formal publications yet. My CDFD work is currently in the pipeline, including poster presentation(s) that are not linked publicly because the work is unpublished.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section-pad section-alt" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <h2>Education & Experience</h2>
+          <p class="section-lead">Compact entries to reduce scanning time.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">Education</h3>
+
+            <div class="timeline">
+              <div class="tl-item">
+                <span class="tl-dot" aria-hidden="true"></span>
+                <div class="tl-content">
+                  <div class="tl-title">M.Sc. Biotechnology — Kakatiya University</div>
+                </div>
+              </div>
+
+              <div class="tl-item">
+                <span class="tl-dot" aria-hidden="true"></span>
+                <div class="tl-content">
+                  <div class="tl-title">M.Tech Biotechnology — NIT Bhopal</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Experience</h3>
+
+            <div class="timeline">
+              <div class="tl-item">
+                <span class="tl-dot" aria-hidden="true"></span>
+                <div class="tl-content">
+                  <div class="tl-title">Project Associate — Centre for DNA Fingerprinting and Diagnostics, Hyderabad (2024–2026)</div>
+                  <p class="tl-body">
+                    Worked on host–pathogen interaction studies using <strong>Candida glabrata</strong>, focusing on how the pathogen adapts within the host environment.
+                    Contributed to generation of datasets for dual-species transcriptomic studies, integrating metabolomics approaches with targeted biochemical assays to investigate metabolic reprogramming.
+                    Carried out protein purification using affinity chromatography and FPLC-based size exclusion, optimizing expression and solubility conditions.
+                    Designed and executed experiments to validate protein–protein interactions.
+                    Also supported in vivo infection studies in murine models for virulence assessment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section id="links" class="section-pad" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <h2>Links</h2>
+          <p class="section-lead">Direct access for supervisors.</p>
+        </div>
+
+        <div class="link-grid">
+          <a class="link-card" href="https://www.linkedin.com/in/aditya-singh-katihar/" target="_blank" rel="noopener">
+            <span class="link-title">LinkedIn</span>
+            <span class="link-sub">Professional profile</span>
+          </a>
+
+          <a class="link-card" href="https://github.com/adityasinghkatihar" target="_blank" rel="noopener">
+            <span class="link-title">GitHub</span>
+            <span class="link-sub">Code & repositories</span>
+          </a>
+
+          <a class="link-card" href="mailto:adityasinghkatihar@gmail.com">
+            <span class="link-title">Email</span>
+            <span class="link-sub">adityasinghkatihar@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACT -->
-    <div class="section">
-        <h2>Contact</h2>
-        <p>Email: adityasinghkatihar@gmail.com</p>
-        <p>Location: Hyderabad, India</p>
+    <section id="contact" class="section-pad section-alt" data-reveal>
+      <div class="container contact-wrap">
+        <div>
+          <h2 style="margin:0 0 10px;">Contact</h2>
+          <p class="section-lead" style="margin:0;">
+            If you’re exploring PhD candidates for cell-state transitions, host–pathogen systems, and computational modeling, I’d love to discuss fit.
+          </p>
+        </div>
+
+        <div class="contact-actions">
+          <a class="btn primary"
+             href="mailto:adityasinghkatihar@gmail.com?subject=PhD%20discussion%20—%20cell-state%20logic%20and%20modeling">
+            Email me
+          </a>
+          <a class="btn ghost" href="#home">Back to top</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">Aditya Singh</div>
+        <div class="footer-small">Academic portfolio • Minimal • Mechanism-first</div>
+      </div>
+
+      <div class="footer-right">
+        <a class="footer-link" href="#privacy">Privacy Policy</a>
+        <a class="footer-link" href="#cookies">Cookies Policy</a>
+      </div>
     </div>
 
-</div>
+    <div class="footer-policy">
+      <div class="container">
+        <h3 id="privacy" class="policy-title">Privacy Policy</h3>
+        <p class="policy-text">Placeholder text. Replace with your final privacy policy before publishing.</p>
 
+        <h3 id="cookies" class="policy-title">Cookies Policy</h3>
+        <p class="policy-text">Placeholder text. Replace with your final cookies policy before publishing.</p>
+
+        <p class="footer-small" style="margin-top:14px;">
+          Tip: this template has no trackers by default.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Lightweight scroll-trigger reveal (no libraries).
+    (function () {
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+
+      const els = document.querySelectorAll('[data-reveal]');
+      if (!els.length) return;
+
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('reveal-visible');
+            io.unobserve(e.target);
+          }
+        }
+      }, { threshold: 0.12 });
+
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
 </html>
