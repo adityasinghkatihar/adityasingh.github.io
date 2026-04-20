@@ -1,258 +1,482 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aditya Singh | Portfolio</title>
-  <meta name="description" content="Experimental biologist transitioning into computational biology and AI/ML, with work in host-pathogen biology, Candida glabrata, metabolism, and protease-driven adaptation." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:wght@500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- linked correctly -->
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Aditya Singh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
-  <a class="skip-link" href="#home">Skip to content</a>
 
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home">Aditya Singh</a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#resume">Resume</a>
-        <a href="#projects">Projects</a>
-        <a href="#activities">Activities</a>
-        <a href="#contact" class="nav-cta">Connect</a>
-      </nav>
+<div id="cookie-banner">
+  <span>
+    This site uses analytics to understand how visitors engage with content - no personal data is sold or shared.
+    See <a href="#privacy">Privacy Policy</a>.
+  </span>
+  <div style="display:flex;gap:0.5rem;flex-shrink:0">
+    <button class="decline" onclick="setCookieConsent('declined')">Decline</button>
+    <button onclick="setCookieConsent('accepted')">Accept</button>
+  </div>
+</div>
+
+<nav id="navbar">
+  <span class="nav-name cormorant">Aditya Singh</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publication">Publications</a></li>
+    <li><a href="#skills">Methods</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div id="locked-bar">
+  <div class="locked-identity">
+    <span style="color:var(--mid)">Aditya Singh is </span><span class="locked-rotating" id="locked-rotating-text"></span>
+  </div>
+</div>
+
+<main>
+
+<section id="hero">
+  <div class="hero-identity cormorant">
+    <span class="hero-fixed-text">Aditya Singh is </span><span class="hero-rotating-text" id="hero-rotating-text"></span>
+  </div>
+  <div class="hero-scroll-hint" id="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-left">
+    <div class="photo-wrap">
+      <img src="https://i.imgur.com/placeholder.jpg"
+           alt="Aditya Singh"
+           onerror="this.parentElement.style.background='#ddd';this.style.display='none'"/>
     </div>
-  </header>
 
-  <main id="home">
-    <section class="hero" data-reveal>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Experimental Biologist • Cellular Systems &amp; Disease Biology • Integrating Experimental and Computational Approaches</p>
-          <h1>How do cells decide what state to adopt, and can we formalize that logic computationally?</h1>
-          <p class="hero-text">
-            I work at the intersection of host-pathogen biology, metabolism, and protease-driven adaptation, and I am now building toward computational biology and AI/ML as a way to model biological decision-making rather than only measure it.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View research</a>
-            <a class="btn btn-secondary" href="mailto:adityasinghkatihar@gmail.com?subject=PhD%20discussion">Contact me</a>
-          </div>
-        </div>
+    <p class="tagline">
+      Biologist. Experimentalist. Computationally curious.
+    </p>
 
-        <aside class="hero-visual" aria-label="Sample visual placeholders">
-          <div class="visual-card visual-large">
-            <span class="visual-label">Sample image area</span>
-            <strong>Keep sample visuals for now</strong>
-            <p>Replace with your own images later without changing the structure.</p>
-          </div>
-          <div class="visual-row">
-            <div class="visual-card visual-small visual-a"></div>
-            <div class="visual-card visual-small visual-b"></div>
-          </div>
-        </aside>
-      </div>
-    </section>
+    <a href="CV_Aditya_Singh.pdf" class="cv-btn" download>Download CV</a>
+  </div>
 
-    <!-- UPDATED ABOUT SECTION -->
-    <section id="about" class="section" data-reveal>
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">About</span>
-          <h2>Let me introduce myself.</h2>
-        </div>
+  <div class="about-right">
+    <p class="section-label">About</p>
+    <div class="divider"></div>
 
-        <div class="about-layout">
-          <aside class="about-left panel">
-            <div class="photo-wrap">
-              <img
-                src="profile.png"
-                alt="Aditya Singh"
-                onerror="this.parentElement.style.background='#ddd';this.style.display='none';"
-              />
-            </div>
-
-            <h3 class="about-name">Aditya Singh</h3>
-            <p class="tagline">Biologist • Experimentalist • Computationally curious</p>
-            <a href="CV_Aditya_Singh.pdf" class="cv-btn" download>Download CV</a>
-          </aside>
-
-          <article class="about-right panel">
-            <p>
-              I am a mechanism-first experimental biologist studying <strong>Candida glabrata</strong>, host-like stress responses, metabolism, and protease-linked adaptation.
-            </p>
-            <p>
-              My long-term goal is to move from describing these systems experimentally to modeling them computationally, so biological state transitions can be framed as learnable logic.
-            </p>
-            <p>
-              I am especially interested in PhD environments where rigorous bench biology and formal modeling inform each other.
-              The transition into computation is not cosmetic for me; it follows directly from the questions my experiments keep surfacing.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="resume" class="section section-alt" data-reveal>
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">Resume</span>
-          <h2>More of my credentials.</h2>
-          <p>Research-facing experience and educational background arranged in a scannable format.</p>
-        </div>
-
-        <div class="resume-grid">
-          <div>
-            <h3 class="subheading">Work Experience</h3>
-
-            <article class="resume-item panel">
-              <div class="resume-meta">March 2024 - February 2026</div>
-              <h4>Project Associate</h4>
-              <h5>Centre for DNA Fingerprinting and Diagnostics, Hyderabad</h5>
-              <p>
-                Worked on host-pathogen interaction studies using <strong>Candida glabrata</strong>, focusing on how the pathogen
-                adapts within host-like environments. Contributed to dual-species transcriptomic dataset generation, integrated
-                metabolomics approaches with targeted biochemical assays, executed protein purification workflows, optimized
-                expression and solubility conditions, validated protein-protein interactions, and supported in vivo infection studies.
-              </p>
-            </article>
-          </div>
-
-          <div>
-            <h3 class="subheading">Background Education</h3>
-
-            <article class="resume-item panel">
-              <div class="resume-meta">August 2023 - March 2024</div>
-              <h4>M.Tech Biotechnology</h4>
-              <h5>NIT Bhopal</h5>
-            </article>
-
-            <article class="resume-item panel">
-              <div class="resume-meta">2021 - 2023</div>
-              <h4>M.Sc. Biotechnology</h4>
-              <h5>Kakatiya University</h5>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section" data-reveal>
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">Projects</span>
-          <h2>Check out my research direction.</h2>
-        </div>
-
-        <div class="project-grid">
-          <article class="project-card panel">
-            <div class="project-media visual-a"></div>
-            <h3>Yapsin-linked metabolic adaptation</h3>
-            <p>
-              Studied protease roles under host-like stress, optimized induction and purification strategy, and used interaction assays
-              to refine hypotheses around metabolic coupling and adaptive state shifts.
-            </p>
-          </article>
-
-          <article class="project-card panel">
-            <div class="project-media visual-b"></div>
-            <h3>Host-pathogen dataset building</h3>
-            <p>
-              Contributed to dual-species transcriptomic and metabolomics-oriented dataset generation, with emphasis on experimental
-              design choices that preserve computational interpretability.
-            </p>
-          </article>
-
-          <article class="project-card panel">
-            <div class="project-media visual-c"></div>
-            <h3>Protein purification and interaction validation</h3>
-            <p>
-              Optimized expression, solubility, affinity chromatography, and FPLC-based workflows to make downstream biological
-              inference more reliable and reproducible.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="activities" class="section section-alt" data-reveal>
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">Activities</span>
-          <h2>What I am building toward.</h2>
-        </div>
-
-        <div class="cards-3">
-          <article class="panel compact">
-            <h3>Computational transition</h3>
-            <p>Learning to translate biological state transitions into formal computational frameworks with interpretability in mind.</p>
-          </article>
-          <article class="panel compact">
-            <h3>Research communication</h3>
-            <p>Shaping experiments into clearer scientific narratives that make the logic of each decision visible to collaborators and supervisors.</p>
-          </article>
-          <article class="panel compact">
-            <h3>Long-term direction</h3>
-            <p>Building toward PhD work where mechanistic biology, data pipelines, and predictive modeling continuously inform one another.</p>
-          </article>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-box"><strong>3+</strong><span>Core research themes</span></div>
-          <div class="stat-box"><strong>1</strong><span>Clear scientific bridge narrative</span></div>
-          <div class="stat-box"><strong>100%</strong><span>Computation motivated by biology</span></div>
-          <div class="stat-box"><strong>Next step</strong><span>PhD research fit</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section" data-reveal>
-      <div class="container contact-panel panel">
-        <div>
-          <span class="section-kicker">Contact</span>
-          <h2>I'd love to connect with you.</h2>
-          <p>
-            If you are exploring PhD candidates or research collaborators working across host-pathogen systems,
-            cell-state logic, and computational biology, I would be glad to discuss fit.
-          </p>
-        </div>
-
-        <div class="contact-links">
-          <a class="btn btn-primary" href="mailto:adityasinghkatihar@gmail.com">Email</a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/aditya-singh-katihar/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-secondary" href="https://github.com/adityasinghkatihar" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>Aditya Singh · Personal academic portfolio</p>
-      <a href="#home">Back to top</a>
+    <div class="about-bio">
+      <p>Aditya Singh used to spend his time convincing proteins to behave. Now he spends even more time trying to convince data to make sense.</p>
+      <p>He is a biologist by training and a generalist by instinct - most comfortable in the space between disciplines that don't normally talk to each other. His background is in <strong>host-pathogen biology and metabolic flux reprogramming</strong>, but his attention keeps drifting toward the methods: how experiments are designed, how data is interpreted, and whether the tools being used are actually the right ones for the question being asked.</p>
+      <p>He has a habit of noticing patterns before he can fully explain them. This is sometimes useful. Mostly annoying.</p>
+      <p>His working philosophy is simple: better methods create better questions. He is currently interested in how computational and automated machine learning approaches can be folded into biological research - not to replace intuition, but to make it more reliable. He does not claim to have everything figured out.</p>
+      <p>Outside the lab, he is usually somewhere between curiosity, overthinking, and a stubborn belief that research should eventually become simpler than the person doing it.</p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    (function () {
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) return;
-      var els = document.querySelectorAll('[data-reveal]');
-      if (!els.length || !('IntersectionObserver' in window)) return;
-      var io = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      els.forEach(function (el) { io.observe(el); });
-    })();
-  </script>
+<section id="research">
+  <p class="section-label">Research</p>
+  <h2 class="section-title cormorant">Experience</h2>
+  <div class="divider"></div>
+
+  <div class="exp-card" id="card-cdfd">
+    <div class="exp-card-header" onclick="toggleCard('card-cdfd')">
+      <div>
+        <p class="exp-card-tag">CDFD, Hyderabad · Project Associate · Mar 2024 - Feb 2026</p>
+        <h3 class="exp-card-title cormorant">Protease-mediated regulation of metabolic flux in <em>Candida glabrata</em></h3>
+        <p class="exp-card-problem">How does a GPI-anchored aspartyl protease regulate metabolic adaptation under host-induced stress?</p>
+      </div>
+      <div class="exp-toggle">
+        <span>Read more</span>
+        <em class="toggle-arrow">↓</em>
+      </div>
+    </div>
+    <div class="exp-card-body">
+      <div class="exp-card-inner">
+        <ul class="exp-outcomes">
+          <li>Established interaction between CgYps1 and key metabolic enzymes across glycolysis and the pentose phosphate pathway.</li>
+          <li>Purified catalytically active CgYps1 via <em>Pichia pastoris</em> expression and FPLC/SEC; >90% purity confirmed by SDS-PAGE.</li>
+          <li>Designed mutagenesis constructs and performed in vitro binding and cleavage assays to map functional interaction domains.</li>
+          <li>Generated dual-species RNA-seq datasets from macrophage-Candida infection models; contributed to pathway enrichment and differential expression analysis.</li>
+          <li>Executed in vivo infection studies in murine models for virulence assessment.</li>
+          <li>Provided evidence supporting a proteolytic layer of regulation over carbon metabolic flux under stress conditions.</li>
+        </ul>
+        <div class="exp-narrative">
+          I investigated how GPI-anchored aspartyl proteases regulate metabolic state transitions in <em>Candida glabrata</em> under host-mimicking stress conditions. Focusing on CgYps1, I characterized its interaction with metabolic proteins in glycolysis and the pentose phosphate pathway using protein purification, mutagenesis, and cleavage assays. These findings point to a proteolytic control layer influencing carbon metabolic flux - a mechanism distinct from transcriptional regulation alone.
+          <div class="exp-insight">
+            Metabolic adaptation in <em>Candida glabrata</em> may be regulated at the level of proteolytic control, not just transcriptional change.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-card" id="card-msc">
+    <div class="exp-card-header" onclick="toggleCard('card-msc')">
+      <div>
+        <p class="exp-card-tag">Kakatiya University · M.Sc. Dissertation · Oct 2022 - Apr 2023</p>
+        <h3 class="exp-card-title cormorant">CRISPR/Cas9-mediated knockout of <em>PDS</em> in <em>Solanum melongena</em></h3>
+        <p class="exp-card-problem">Can CRISPR/Cas9 be validated as an effective gene editing tool for the <em>PDS</em> locus in brinjal via Agrobacterium-mediated transformation?</p>
+      </div>
+      <div class="exp-toggle">
+        <span>Read more</span>
+        <em class="toggle-arrow">↓</em>
+      </div>
+    </div>
+    <div class="exp-card-body">
+      <div class="exp-card-inner">
+        <ul class="exp-outcomes">
+          <li>Designed a CRISPR/Cas9 knockout vector targeting the <em>PDS</em> (Phytoene desaturase) gene in brinjal (<em>Solanum melongena</em> L.).</li>
+          <li>Validated system efficacy for plant gene editing via Agrobacterium-mediated transformation.</li>
+        </ul>
+        <div class="exp-narrative">
+          Working under Dr. Radhika Tippani, this project applied CRISPR/Cas9 methodology to a plant system, establishing a functional gene-editing pipeline and gaining foundational experience in molecular cloning and transformation workflows.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="publication">
+  <p class="section-label">Publications</p>
+  <h2 class="section-title cormorant">Research Output</h2>
+  <div class="divider"></div>
+
+  <div class="pub-card">
+    <p class="pub-title cormorant">
+      Role of glycosylphosphatidylinositol (GPI)-anchored aspartyl proteases in the pathobiology of <em>Candida glabrata</em>
+    </p>
+    <p class="pub-authors">
+      Sarowgi, A., <strong>Singh, A.</strong>, & Kaur, R.
+    </p>
+    <span class="pub-status">Manuscript in preparation · Expected submission: late 2026</span>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-label">Methods</p>
+  <h2 class="section-title cormorant">Technical Competencies</h2>
+  <div class="divider"></div>
+
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <p class="skill-category-label">Experimental Systems</p>
+      <div class="tag-wrap">
+        <span class="tag">Microbial culture</span>
+        <span class="tag">Mammalian cell lines</span>
+        <span class="tag">Host-pathogen models</span>
+        <span class="tag">Infection assays</span>
+        <span class="tag">Murine models</span>
+        <span class="tag">Plant tissue culture</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-category-label">Molecular & Genetic Manipulation</p>
+      <div class="tag-wrap">
+        <span class="tag">CRISPR/Cas9</span>
+        <span class="tag">Site-directed mutagenesis</span>
+        <span class="tag">Molecular cloning</span>
+        <span class="tag">Gene knockout</span>
+        <span class="tag">Agrobacterium transformation</span>
+        <span class="tag">Yeast transformation</span>
+        <span class="tag">Electroporation</span>
+        <span class="tag">PCR</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-category-label">Protein & Biochemical Analysis</p>
+      <div class="tag-wrap">
+        <span class="tag">IMAC / Ni-NTA</span>
+        <span class="tag">SEC / FPLC (ÄKTA)</span>
+        <span class="tag">SDS-PAGE</span>
+        <span class="tag">Western blotting</span>
+        <span class="tag">Co-immunoprecipitation</span>
+        <span class="tag">Cleavage assays</span>
+        <span class="tag">ELISA</span>
+        <span class="tag">FACS</span>
+        <span class="tag">Immunofluorescence</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-category-label">Data & Computational Analysis</p>
+      <div class="tag-wrap">
+        <span class="tag">LC-MS/MS</span>
+        <span class="tag">RNA-seq (basic)</span>
+        <span class="tag">AlphaFold</span>
+        <span class="tag">PyMOL</span>
+        <span class="tag">AutoDock</span>
+        <span class="tag">GraphPad Prism</span>
+        <span class="tag">RStudio (beginner)</span>
+        <span class="tag">AI-assisted scripting</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-category-label">Research Design & Integration</p>
+      <div class="tag-wrap">
+        <span class="tag">Experimental design</span>
+        <span class="tag">Multi-modal data integration</span>
+        <span class="tag">Workflow automation</span>
+        <span class="tag">Metabolomics integration</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="skills-caveat">
+    Computational tools listed reflect hands-on beginner proficiency with strong conceptual grounding. Comfortable executing bioinformatics workflows under guidance and actively developing independent capacity.
+  </p>
+</section>
+
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <h2 class="section-title cormorant">Let's Connect</h2>
+  <div class="divider"></div>
+
+  <div class="contact-grid">
+    <div class="contact-left">
+      <p class="contact-final-line cormorant">
+        Aditya Singh is <span class="final-rotating" id="final-rotating-text"></span>
+      </p>
+      <p>Open to PhD opportunities in host-pathogen biology, fungal biology, metabolic regulation, and adjacent areas integrating computational approaches. Cold emails welcome.</p>
+
+      <a href="CV_Aditya_Singh.pdf" class="cv-download-contact" download>Download CV</a>
+    </div>
+
+    <div class="contact-right">
+      <div class="contact-links">
+        <a href="mailto:adityasinghkatihar@gmail.com" class="contact-link-item">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          <span class="contact-link-label">Email</span>
+          <span>adityasinghkatihar@gmail.com</span>
+        </a>
+
+        <a href="https://github.com/adityasinghkatihar" target="_blank" rel="noopener" class="contact-link-item">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <span class="contact-link-label">GitHub</span>
+          <span>adityasinghkatihar</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/aditya-singh-katihar/" target="_blank" rel="noopener" class="contact-link-item">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <span class="contact-link-label">LinkedIn</span>
+          <span>aditya-singh-katihar</span>
+        </a>
+
+        <a href="https://orcid.org/0009-0004-0685-1620" target="_blank" rel="noopener" class="contact-link-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 12h6M12 9v6" stroke-width="1.8"/></svg>
+          <span class="contact-link-label">ORCiD</span>
+          <span>0009-0004-0685-1620</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="privacy">
+  <span>© 2026 Aditya Singh</span>
+  <span>
+    <a href="#privacy">Privacy Policy</a> ·
+    This site collects anonymised session analytics. No personal data is stored or sold.
+  </span>
+</footer>
+
+<script>
+const heroPhrases = [
+  "a biologist. Mostly.",
+  "still in the lab. Technically.",
+  "somewhere between a pipette and a Python script."
+];
+
+const lockedPhrases = [
+  "a biologist. Mostly.",
+  "still in the lab. Technically.",
+  "somewhere between a pipette and a Python script.",
+  "a generalist in a world of specialists.",
+  "convinced the answer is in the data.",
+  "unconvinced by clean answers."
+];
+
+const finalPhrase = "working on it.";
+
+function typeWriter(el, text, onDone) {
+  el.textContent = '';
+  let i = 0;
+  const minDelay = 38, maxDelay = 95;
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      const ch = text[i - 1];
+      const delay = (ch === '.' || ch === ',' || ch === '–')
+        ? maxDelay * 3 + Math.random() * 80
+        : minDelay + Math.random() * (maxDelay - minDelay);
+      setTimeout(type, delay);
+    } else {
+      setTimeout(onDone, 1800);
+    }
+  }
+  type();
+}
+
+function eraseWriter(el, onDone) {
+  let txt = el.textContent;
+  function erase() {
+    if (txt.length > 0) {
+      txt = txt.slice(0, -1);
+      el.textContent = txt;
+      setTimeout(erase, 28 + Math.random() * 20);
+    } else {
+      setTimeout(onDone, 300);
+    }
+  }
+  erase();
+}
+
+function startCycle(el, phrases) {
+  let idx = 0;
+  function next() {
+    typeWriter(el, phrases[idx], () => {
+      eraseWriter(el, () => {
+        idx = (idx + 1) % phrases.length;
+        next();
+      });
+    });
+  }
+  next();
+}
+
+const heroEl = document.getElementById('hero-rotating-text');
+const lockedEl = document.getElementById('locked-rotating-text');
+const finalEl = document.getElementById('final-rotating-text');
+
+startCycle(heroEl, heroPhrases);
+startCycle(lockedEl, lockedPhrases);
+
+(function finalLoop() {
+  typeWriter(finalEl, finalPhrase, () => {
+    setTimeout(() => eraseWriter(finalEl, finalLoop), 2200);
+  });
+})();
+
+const navbar = document.getElementById('navbar');
+const lockedBar = document.getElementById('locked-bar');
+const scrollHint = document.getElementById('scroll-hint');
+const heroSection = document.getElementById('hero');
+let heroHeight = heroSection.offsetHeight;
+
+window.addEventListener('resize', () => { heroHeight = heroSection.offsetHeight; });
+
+window.addEventListener('scroll', () => {
+  const past = window.scrollY > heroHeight * 0.85;
+  navbar.classList.toggle('visible', past);
+  lockedBar.classList.toggle('visible', past);
+  scrollHint.style.opacity = past ? '0' : '1';
+  document.body.classList.toggle('scrolled', past);
+
+  const contact = document.getElementById('contact');
+  const contactTop = contact.getBoundingClientRect().top;
+  if (contactTop < 120) lockedBar.classList.remove('visible');
+  else if (past) lockedBar.classList.add('visible');
+});
+
+const sections = ['about','research','publication','skills','contact'];
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const sectionObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.35 });
+
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) sectionObs.observe(el);
+});
+
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+
+const banner = document.getElementById('cookie-banner');
+
+function setCookieConsent(val) {
+  localStorage.setItem('cookie-consent', val);
+  banner.style.display = 'none';
+  if (val === 'accepted') initAnalytics();
+}
+
+(function() {
+  const stored = localStorage.getItem('cookie-consent');
+  if (stored) {
+    banner.style.display = 'none';
+    if (stored === 'accepted') initAnalytics();
+  }
+})();
+
+const SHEETS_ENDPOINT = 'YOUR_GOOGLE_APPS_SCRIPT_ENDPOINT_HERE';
+
+let analyticsEnabled = false;
+const sessionStart = Date.now();
+const sectionTimes = {};
+let currentSection = 'hero';
+let sectionStart = Date.now();
+
+function initAnalytics() {
+  analyticsEnabled = true;
+  trackSectionTime();
+  window.addEventListener('beforeunload', sendAnalytics);
+}
+
+function trackSectionTime() {
+  const sectionObs2 = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const now = Date.now();
+        if (currentSection) {
+          sectionTimes[currentSection] = (sectionTimes[currentSection] || 0) + (now - sectionStart);
+        }
+        currentSection = e.target.id || e.target.closest('section')?.id || 'unknown';
+        sectionStart = now;
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('section').forEach(s => sectionObs2.observe(s));
+}
+
+function sendAnalytics() {
+  if (!analyticsEnabled || SHEETS_ENDPOINT === 'YOUR_GOOGLE_APPS_SCRIPT_ENDPOINT_HERE') return;
+  const now = Date.now();
+  sectionTimes[currentSection] = (sectionTimes[currentSection] || 0) + (now - sectionStart);
+  const payload = {
+    timestamp: new Date().toISOString(),
+    totalTime: Math.round((now - sessionStart) / 1000),
+    referrer: document.referrer || 'direct',
+    sectionTimes: Object.fromEntries(
+      Object.entries(sectionTimes).map(([k, v]) => [k, Math.round(v / 1000)])
+    )
+  };
+  navigator.sendBeacon(SHEETS_ENDPOINT, JSON.stringify(payload));
+}
+</script>
+
 </body>
 </html>
