@@ -289,79 +289,112 @@ section {
    ============================================================ -->
 #about {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 5rem;
-  align-items: start;
-  padding-top: 7rem;
+  grid-template-columns: minmax(280px, 360px) minmax(380px, 1fr);
+  gap: 0;
+  align-items: stretch;
+  padding-top: 4rem;
+  max-width: 1200px;
+  min-height: 72vh;
+  border: 1px solid var(--border);
+  background: #d7d7d7;
 }
 
 .about-left {
-  position: sticky;
-  top: calc(var(--nav-h) + var(--hero-lock-h) + 2rem);
+  position: relative;
+  top: auto;
+  background: #f1f1f1;
+  padding: 2.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-right: 1px solid #c9c9c9;
 }
 
 .photo-wrap {
-  width: 100%;
-  aspect-ratio: 1;
+  width: min(230px, 100%);
+  aspect-ratio: 0.95;
   overflow: hidden;
-  background: var(--surface);
-  filter: grayscale(15%);
-  transition: filter 0.4s;
+  background: #e8e8e8;
+  border: 1px solid #ddd;
+  margin-bottom: 1.25rem;
 }
-.photo-wrap:hover { filter: grayscale(0%); }
 .photo-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center;
   display: block;
 }
 
-.tagline {
-  margin-top: 1.25rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  font-weight: 300;
-  line-height: 1.6;
-  text-align: center;
+.about-name {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 0.25rem;
+}
+
+.about-pronouns {
+  font-size: 0.9rem;
+  color: #3f3f3f;
+  margin-bottom: 0.35rem;
+}
+
+.about-role {
+  font-size: 1rem;
+  color: #1f1f1f;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.75rem;
 }
 
 .cv-btn {
-  display: block;
-  margin-top: 1.5rem;
+  display: inline-block;
+  margin-top: 0;
   text-align: center;
-  padding: 0.65rem 0;
-  border: 1px solid var(--border);
+  padding: 0.72rem 2.2rem;
+  border: 1px solid #2a2a2a;
+  background: #2a2a2a;
   font-size: 0.7rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: #fff;
   transition: all 0.25s;
-  background: transparent;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  width: 100%;
+  width: fit-content;
   text-decoration: none;
 }
 .cv-btn:hover {
   background: var(--orange);
-  color: var(--white);
+  color: #fff;
   border-color: var(--orange);
 }
 
-.about-right {}
+.about-right {
+  background: #a9a9a9;
+  padding: 4rem 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-right .section-title {
+  margin-bottom: 1.2rem;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 600;
+}
 
 .about-bio p {
-  font-size: 1rem;
-  color: var(--mid);
-  line-height: 1.85;
-  margin-bottom: 1.4rem;
-  font-weight: 300;
+  font-size: 1.15rem;
+  color: #f4f4f4;
+  line-height: 1.62;
+  margin-bottom: 0;
+  font-weight: 500;
+  max-width: 620px;
 }
 .about-bio p strong {
-  color: var(--dark);
-  font-weight: 400;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 /* ============================================================
@@ -708,10 +741,12 @@ footer a:hover { color: var(--orange); }
 @media (max-width: 768px) {
   #about {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    min-height: auto;
   }
-  .about-left { position: static; }
-  .photo-wrap { max-width: 240px; margin: 0 auto; }
+  .about-left { padding: 2rem 1.2rem; border-right: none; border-bottom: 1px solid #c9c9c9; }
+  .photo-wrap { max-width: 240px; margin: 0 auto 1.25rem; }
+  .about-right { padding: 2.2rem 1.5rem; }
+  .about-bio p { font-size: 1rem; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   #navbar { padding: 0 1.5rem; }
   .nav-links { gap: 1.5rem; }
@@ -795,32 +830,22 @@ footer a:hover { color: var(--orange); }
 <section id="about">
   <div class="about-left">
     <div class="photo-wrap">
-      <!-- PHOTO: Replace the src below with your actual image path -->
-      <img src="https://i.imgur.com/placeholder.jpg"
+      <!-- PHOTO: replace with your actual file path in this repo -->
+      <img src="profile.jpg"
            alt="Aditya Singh"
            onerror="this.parentElement.style.background='#ddd';this.style.display='none'"/>
     </div>
 
-    <!-- TAGLINE: Edit the three lines below -->
-    <p class="tagline">
-      Biologist. Experimentalist. Computationally curious.
-    </p>
-
-    <!-- CV DOWNLOAD: Replace href with actual CV file path -->
+    <h3 class="about-name cormorant">Aditya Singh</h3>
+    <p class="about-pronouns">(he/him)</p>
+    <p class="about-role">Research Scientist</p>
     <a href="CV_Aditya_Singh.pdf" class="cv-btn" download>Download CV</a>
   </div>
 
   <div class="about-right">
-    <p class="section-label">About</p>
-    <div class="divider"></div>
-
-    <!-- BIO: Edit paragraphs here -->
+    <h2 class="section-title cormorant">About Me</h2>
     <div class="about-bio">
-      <p>Aditya Singh used to spend his time convincing proteins to behave. Now he spends even more time trying to convince data to make sense.</p>
-      <p>He is a biologist by training and a generalist by instinct — most comfortable in the space between disciplines that don't normally talk to each other. His background is in <strong>host–pathogen biology and metabolic flux reprogramming</strong>, but his attention keeps drifting toward the methods: how experiments are designed, how data is interpreted, and whether the tools being used are actually the right ones for the question being asked.</p>
-      <p>He has a habit of noticing patterns before he can fully explain them. This is sometimes useful. Mostly annoying.</p>
-      <p>His working philosophy is simple: better methods create better questions. He is currently interested in how computational and automated machine learning approaches can be folded into biological research — not to replace intuition, but to make it more reliable. He does not claim to have everything figured out.</p>
-      <p>Outside the lab, he is usually somewhere between curiosity, overthinking, and a stubborn belief that research should eventually become simpler than the person doing it.</p>
+      <p>I am a research-focused biologist with hands-on experience in host-pathogen biology, fungal pathobiology, and metabolic regulation. I work across wet-lab and computational methods, with a strong interest in building better experimental workflows and using data-driven approaches to improve biological research outcomes.</p>
     </div>
   </div>
 </section>
@@ -838,7 +863,7 @@ footer a:hover { color: var(--orange); }
 
   <!-- CARD 1: CDFD — Primary -->
   <div class="exp-card" id="card-cdfd">
-    <div class="exp-card-header" onclick="toggleCard('card-cdfd')">
+    <div class="exp-card-header">
       <div>
         <p class="exp-card-tag">CDFD, Hyderabad · Project Associate · Mar 2024 – Feb 2026</p>
         <h3 class="exp-card-title cormorant">Protease-mediated regulation of metabolic flux in <em>Candida glabrata</em></h3>
@@ -871,7 +896,7 @@ footer a:hover { color: var(--orange); }
 
   <!-- CARD 2: M.Sc. Dissertation — Secondary -->
   <div class="exp-card" id="card-msc">
-    <div class="exp-card-header" onclick="toggleCard('card-msc')">
+    <div class="exp-card-header">
       <div>
         <p class="exp-card-tag">Kakatiya University · M.Sc. Dissertation · Oct 2022 – Apr 2023</p>
         <h3 class="exp-card-title cormorant">CRISPR/Cas9-mediated knockout of <em>PDS</em> in <em>Solanum melongena</em></h3>
@@ -1133,7 +1158,7 @@ const finalPhrase = "working on it.";
 function typeWriter(el, text, onDone) {
   el.textContent = '';
   let i = 0;
-  const minDelay = 38, maxDelay = 95;
+  const minDelay = 48, maxDelay = 112;
   function type() {
     if (i < text.length) {
       el.textContent += text[i++];
@@ -1156,7 +1181,7 @@ function eraseWriter(el, onDone) {
     if (txt.length > 0) {
       txt = txt.slice(0, -1);
       el.textContent = txt;
-      setTimeout(erase, 28 + Math.random() * 20);
+      setTimeout(erase, 34 + Math.random() * 22);
     } else {
       setTimeout(onDone, 300);
     }
@@ -1237,8 +1262,17 @@ sections.forEach(id => {
 // ── JS-4: CARD EXPAND / COLLAPSE ─────────────────────────────
 function toggleCard(id) {
   const card = document.getElementById(id);
+  if (!card) return;
   card.classList.toggle('open');
 }
+
+// Also bind click events directly for robust card toggling.
+document.querySelectorAll('.exp-card-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const card = header.closest('.exp-card');
+    if (card?.id) toggleCard(card.id);
+  });
+});
 
 // ── JS-5: COOKIE CONSENT ─────────────────────────────────────
 const banner = document.getElementById('cookie-banner');
