@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Aditya Singh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   VARIABLES — edit --or to change orange accent globally
+   Grey scale: --g1 (lightest) → --g8 (darkest)
+   ============================================================ */
+:root{
+  --g0:#ffffff;--g1:#f0f0ed;--g2:#e8e8e5;--g3:#dcdcda;
+  --g4:#c8c8c4;--g5:#9a9a96;--g6:#525250;--g7:#2a2a28;--g8:#111110;
+  --or:#e85d04;--os:rgba(232,93,4,.08);--nh:48px;--lh:52px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--g1);color:var(--g8);font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ============================================================
+   COOKIE BANNER — GDPR/UK/US(CCPA)/AU/JP
+   Edit text inside #cookie-banner div in HTML if needed
+   ============================================================ */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--g8);color:var(--g5);font-size:.74rem;padding:.9rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;z-index:9999;border-top:1px solid var(--g7);line-height:1.5}
+#cookie-banner a{color:var(--or);text-decoration:underline}
+.ck-btns{display:flex;gap:.5rem;flex-shrink:0}
+/* ── Grey buttons with orange border + text ── */
+.ck-btns button{padding:.42rem 1.2rem;font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.07em;cursor:pointer;background:var(--g2);border:1px solid var(--or);color:var(--or);transition:all .2s}
+.ck-btns button:hover{background:var(--or);color:var(--g0)}
+.ck-decline{background:transparent!important;color:var(--g5)!important;border-color:var(--g6)!important}
+.ck-decline:hover{background:var(--g6)!important;color:var(--g0)!important}
+
+/* ============================================================
+   NAVBAR — appears after hero scroll
+   Edit nav link labels and href in the nav HTML block below
+   ============================================================ */
+#navbar{position:fixed;top:0;left:0;right:0;height:var(--nh);background:rgba(240,240,237,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--g4);display:flex;align-items:center;justify-content:space-between;padding:0 4rem;z-index:90;opacity:0;pointer-events:none;transition:opacity .35s}
+#navbar.visible{opacity:1;pointer-events:auto}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:.06em}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;color:var(--g6);padding-bottom:2px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--or);border-bottom-color:var(--or)}
+
+/* ============================================================
+   LOCKED ROTATING BAR — sits below navbar post-hero scroll
+   Edit lockedPhrases[] in JS-1 to change (2) descriptors
+   ============================================================ */
+#locked-bar{position:fixed;top:var(--nh);left:0;right:0;height:var(--lh);background:var(--g2);border-bottom:1px solid var(--g4);display:flex;align-items:center;justify-content:center;z-index:80;opacity:0;pointer-events:none;transition:opacity .35s}
+#locked-bar.visible{opacity:1}
+.lk-line{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(.9rem,2vw,1.1rem);color:var(--g6)}
+.lk-line .lr{color:var(--or);border-right:1.5px solid var(--or);display:inline-block;min-width:2px}
+
+/* ============================================================
+   SHARED SECTION UTILITIES
+   ============================================================ */
+.sw{max-width:1080px;margin:0 auto;padding:6rem 3rem}
+.sec-label{font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);font-weight:500;margin-bottom:.6rem}
+.sec-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.1;color:var(--g8);margin-bottom:1rem}
+.divider{width:36px;height:1.5px;background:var(--or);margin-bottom:3rem}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+
+/* ============================================================
+   HERO SECTION
+   CSS fallback text before JS loads: "at the edge of methods."
+   Edit heroPhrases[] in JS-1 for (1) rotating descriptors
+   ============================================================ */
+#hero{min-height:100vh;background:var(--g1);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;position:relative}
+.hero-line{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,5vw,3.8rem);line-height:1.25;color:var(--g8)}
+/* CSS fallback — visible before JS activates */
+#hero-rt::before{content:"at the edge of methods.";color:var(--or)}
+#hero-rt.on::before{content:none}
+#hero-rt.on{color:var(--or);border-right:2px solid var(--or);display:inline-block;min-width:2px}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);transition:opacity .4s}
+.scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,var(--g5),transparent);animation:sp 1.8s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ============================================================
+   ABOUT SECTION
+   Split grid: left = grey bg (photo + tagline + CV btn)
+               right = white (bio text)
+   Edit photo src, tagline, bio paragraphs in HTML below
+   ============================================================ */
+#about{background:var(--g0);padding:0}
+.about-grid{display:grid;grid-template-columns:300px 1fr;max-width:1080px;margin:0 auto}
+.about-left{background:var(--g2);padding:5rem 2.5rem;border-right:1px solid var(--g4)}
+.about-right{padding:5rem 3rem}
+.photo-frame{width:100%;aspect-ratio:1;overflow:hidden;background:var(--g3)}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:grayscale(12%);transition:filter .4s}
+.photo-frame:hover img{filter:grayscale(0%)}
+.tagline{margin-top:1.2rem;font-size:.71rem;letter-spacing:.06em;color:var(--g5);text-align:center;line-height:1.7}
+/* ── Grey button, orange border + text ── */
+.cv-btn{display:block;margin-top:1.4rem;padding:.65rem;text-align:center;border:1px solid var(--or);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);background:var(--g2);transition:all .25s;font-family:'Inter',sans-serif;width:100%;text-decoration:none;cursor:pointer}
+.cv-btn:hover{background:var(--or);color:var(--g0)}
+.about-bio p{font-size:.97rem;color:var(--g6);line-height:1.9;margin-bottom:1.3rem}
+.about-bio strong{color:var(--g8);font-weight:400}
+.about-right .sec-label{margin-top:.5rem}
+
+/* ============================================================
+   RESEARCH SECTION
+   Each .exp-card = one project. Click header to expand.
+   Expand logic uses addEventListener (see JS-4) — no inline onclick.
+   Add new cards by duplicating an .exp-card block.
+   ============================================================ */
+#research{background:var(--g2)}
+.exp-card{background:var(--g0);border:1px solid var(--g4);margin-bottom:1.25rem;transition:border-color .25s}
+.exp-card:hover{border-color:var(--g5)}
+.exp-card.open{border-left:2px solid var(--or)}
+.exp-header{padding:1.8rem 2.2rem;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;user-select:none}
+.exp-tag{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);font-weight:500;margin-bottom:.4rem}
+.exp-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.4rem;color:var(--g8);line-height:1.3;margin-bottom:.4rem}
+.exp-problem{font-size:.84rem;color:var(--g5);font-style:italic;line-height:1.6}
+.exp-toggle{flex-shrink:0;font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--g5);display:flex;align-items:center;gap:.4rem;padding-top:.25rem;transition:color .2s;white-space:nowrap}
+.exp-card.open .exp-toggle{color:var(--or)}
+.t-arr{display:inline-block;transition:transform .3s;font-style:normal}
+.exp-card.open .t-arr{transform:rotate(180deg)}
+.exp-body{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.exp-card.open .exp-body{max-height:1000px}
+.exp-inner{padding:1.5rem 2.2rem 2rem;border-top:1px solid var(--g3)}
+.exp-outcomes{list-style:none;margin-bottom:1.4rem}
+.exp-outcomes li{font-size:.86rem;color:var(--g6);line-height:1.75;padding:.35rem 0 .35rem 1rem;border-left:2px solid var(--g3);margin-bottom:.4rem;transition:border-color .2s}
+.exp-card.open .exp-outcomes li{border-left-color:var(--or)}
+.exp-narrative{font-size:.88rem;color:var(--g6);line-height:1.85;padding-top:1.2rem;border-top:1px solid var(--g3)}
+.exp-insight{margin-top:1.2rem;padding:1rem 1.2rem;background:var(--os);border-left:2px solid var(--or);font-size:.84rem;color:var(--g7);font-style:italic;line-height:1.7}
+
+/* ============================================================
+   PUBLICATION SECTION
+   Edit title, authors, badge text in .pub-card HTML below
+   ============================================================ */
+#publication{background:var(--g1)}
+.pub-card{background:var(--g0);border:1px solid var(--g4);padding:2rem 2.5rem;transition:border-color .25s}
+.pub-card:hover{border-color:var(--or)}
+.pub-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.3rem;color:var(--g8);line-height:1.45;margin-bottom:.7rem}
+.pub-authors{font-size:.82rem;color:var(--g5);line-height:1.6;margin-bottom:.7rem}
+.pub-authors strong{color:var(--g8);font-weight:500}
+.pub-badge{display:inline-block;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .85rem;border:1px solid var(--or);color:var(--or)}
+
+/* ============================================================
+   SKILLS SECTION
+   Five categories — add/remove .tag spans freely
+   Edit .skills-caveat text or remove when proficiency grows
+   ============================================================ */
+#skills{background:var(--g2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:2.5rem}
+.sk-cat{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);font-weight:500;margin-bottom:.85rem}
+.tag-wrap{display:flex;flex-wrap:wrap;gap:.42rem}
+.tag{font-size:.74rem;padding:.3rem .8rem;border:1px solid var(--g4);background:var(--g1);color:var(--g6);transition:all .2s}
+.tag:hover{border-color:var(--or);color:var(--g8);background:var(--os)}
+.skills-caveat{margin-top:2.5rem;font-size:.79rem;color:var(--g5);font-style:italic;border-left:2px solid var(--g4);padding-left:1rem;line-height:1.75}
+
+/* ============================================================
+   CREDENTIALS SECTION
+   Image cards: click to open lightbox (no download by design)
+   Text cards: GATE, National Science Convention (no image file)
+   IMPORTANT: update PNG filenames in .cred-img src and data-full
+               to match your actual uploaded filenames in the repo
+   ============================================================ */
+#credentials{background:var(--g1)}
+.cred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem}
+.cred-card{background:var(--g0);border:1px solid var(--g4);transition:border-color .25s;overflow:hidden}
+.cred-card:hover{border-color:var(--or)}
+.cred-img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--g2);position:relative}
+.cred-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none;transition:transform .4s}
+.cred-img-wrap:hover img{transform:scale(1.02)}
+.cred-img-wrap::after{content:"View";position:absolute;inset:0;background:rgba(17,17,16,.45);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.cred-img-wrap:hover::after{opacity:1}
+.cred-info{padding:1.2rem 1.5rem 1.5rem}
+.cred-tag{font-size:.61rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);font-weight:500;margin-bottom:.3rem}
+.cred-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.1rem;color:var(--g8);line-height:1.35;margin-bottom:.25rem}
+.cred-meta{font-size:.74rem;color:var(--g5);line-height:1.5}
+/* Text-only card styling */
+.cred-card.text-only{padding:2rem}
+.cred-big{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.8rem;color:var(--or);line-height:1;margin-bottom:.5rem}
+
+/* ============================================================
+   LIGHTBOX — opened by credential image click
+   No download button intentional. Right-click disabled on images.
+   ============================================================ */
+#lightbox{display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center}
+#lightbox.active{display:flex}
+#lb-overlay{position:absolute;inset:0;background:rgba(10,10,10,.9);cursor:pointer}
+#lb-content{position:relative;z-index:1;max-width:90vw;max-height:88vh}
+#lb-img{max-width:100%;max-height:88vh;object-fit:contain;pointer-events:none;user-select:none;-webkit-user-drag:none;display:block}
+#lb-close{position:absolute;top:-2.2rem;right:0;background:none;border:none;color:var(--g5);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:color .2s}
+#lb-close:hover{color:var(--or)}
+
+/* ============================================================
+   CONTACT SECTION — dark background (final section)
+   CSS fallback for rotating line: "working on it."
+   Edit finalPhrase in JS-1 for (3) descriptor
+   Edit email, GitHub, LinkedIn, ORCiD links in HTML below
+   ============================================================ */
+#contact{background:var(--g8)}
+#contact .sec-label{color:var(--or)}
+#contact .sec-title{color:var(--g0)}
+#contact .divider{background:var(--or)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.c-final-line{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1rem,2.5vw,1.3rem);color:var(--g5);margin-bottom:1.5rem;min-height:2em}
+.c-final-line .fr{color:var(--or);border-right:1.5px solid var(--or);display:inline-block;min-width:2px}
+/* CSS fallback for contact rotating */
+#final-rt::before{content:"working on it.";color:var(--or)}
+#final-rt.on::before{content:none}
+#final-rt.on{color:var(--or);border-right:1.5px solid var(--or)}
+.contact-desc{font-size:.9rem;color:var(--g5);line-height:1.85;margin-bottom:2rem}
+/* ── Grey button, orange border + text (dark section variant) ── */
+.cv-btn-dark{display:inline-block;padding:.7rem 2rem;border:1px solid var(--or);font-size:.69rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);background:var(--g7);transition:all .25s;font-family:'Inter',sans-serif;text-decoration:none}
+.cv-btn-dark:hover{background:var(--or);color:var(--g0)}
+.contact-links{display:flex;flex-direction:column;gap:.85rem}
+/* ── Contact link items — grey bg, orange icons + labels ── */
+.c-link{display:flex;align-items:center;gap:1rem;padding:.85rem 1.1rem;border:1px solid var(--g7);background:var(--g7);color:var(--g5);font-size:.81rem;transition:all .25s;text-decoration:none}
+.c-link:hover{border-color:var(--or);background:rgba(232,93,4,.08);color:var(--g3)}
+.c-link svg{width:15px;height:15px;stroke:var(--or);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.cl-lbl{font-size:.61rem;letter-spacing:.15em;text-transform:uppercase;color:var(--or);min-width:58px}
+
+/* ============================================================
+   FOOTER — edit year if needed
+   ============================================================ */
+footer{background:var(--g8);border-top:1px solid var(--g7);padding:1.25rem 4rem;display:flex;justify-content:space-between;align-items:center;font-size:.67rem;color:var(--g6);letter-spacing:.07em}
+footer a{color:var(--g6);text-decoration:underline;transition:color .2s}
+footer a:hover{color:var(--or)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:768px){
+  .about-grid{grid-template-columns:1fr}
+  .about-left{border-right:none;border-bottom:1px solid var(--g4);padding:3rem 2rem}
+  .photo-frame{max-width:200px;margin:0 auto}
+  .about-right{padding:2.5rem 2rem}
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  #navbar{padding:0 1.5rem}
+  .nav-links{gap:1.5rem}
+  .sw{padding:4rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     COOKIE BANNER
+     Text and links editable here
+     ============================================================ -->
+<div id="cookie-banner">
+  <span>This site uses anonymised session analytics to understand engagement — no personal data is sold or shared. <a href="#privacy">Privacy Policy</a>.</span>
+  <div class="ck-btns">
+    <button class="ck-decline" onclick="setCookieConsent('declined')">Decline</button>
+    <button class="ck-accept" onclick="setCookieConsent('accepted')">Accept</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     NAVBAR — hidden until hero scrolled past
+     Edit labels and href anchors here
+     ============================================================ -->
+<nav id="navbar">
+  <span class="nav-brand">Aditya Singh</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publication">Publications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     LOCKED ROTATING BAR — (2) phrases, below navbar
+     Edit lockedPhrases[] in JS-1
+     ============================================================ -->
+<div id="locked-bar">
+  <p class="lk-line">Aditya Singh is <span class="lr" id="locked-rt"></span></p>
+</div>
+
+<main>
+
+<!-- ============================================================
+     HERO SECTION
+     Fixed text: "Aditya Singh is"
+     Rotating: driven by JS-1 heroPhrases[]
+     CSS fallback: "at the edge of methods." (no JS needed)
+     ============================================================ -->
+<section id="hero">
+  <p class="hero-line">Aditya Singh is <span id="hero-rt"></span></p>
+  <div class="scroll-hint" id="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT SECTION
+     Left column: grey bg — photo, tagline, CV download
+     Right column: white — bio text
+     PHOTO: file is profile.png in repo root
+     CV: file is CV_Aditya_Singh.pdf in repo root
+     ============================================================ -->
+<section id="about">
+  <div class="about-grid">
+
+    <div class="about-left">
+      <div class="photo-frame">
+        <!-- PHOTO: profile.png must be in repo root -->
+        <img src="profile.png" alt="Aditya Singh"/>
+      </div>
+      <!-- TAGLINE: edit the text below -->
+      <p class="tagline">Biologist. Experimentalist. Computationally curious.</p>
+      <!-- CV DOWNLOAD: file must be CV_Aditya_Singh.pdf in repo root -->
+      <a href="CV_Aditya_Singh.pdf" class="cv-btn" download>Download CV</a>
+    </div>
+
+    <div class="about-right reveal">
+      <p class="sec-label">About</p>
+      <div class="divider"></div>
+      <!-- BIO: edit paragraphs here -->
+      <div class="about-bio">
+        <p>Aditya Singh used to spend his time convincing proteins to behave. Now he spends even more time trying to convince data to make sense.</p>
+        <p>He is a biologist by training and a generalist by instinct — most comfortable in the space between disciplines that don't normally talk to each other. His background is in <strong>host–pathogen biology and metabolic flux reprogramming</strong>, but his attention keeps drifting toward the methods: how experiments are designed, how data is interpreted, and whether the tools being used are actually the right ones for the question being asked.</p>
+        <p>He has a habit of noticing patterns before he can fully explain them. This is sometimes useful. Mostly annoying.</p>
+        <p>His working philosophy is simple: better methods create better questions. He is currently interested in how computational and automated machine learning approaches can be folded into biological research — not to replace intuition, but to make it more reliable. He does not claim to have everything figured out.</p>
+        <p>Outside the lab, he is usually somewhere between curiosity, overthinking, and a stubborn belief that research should eventually become simpler than the person doing it.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     RESEARCH SECTION
+     Cards expand on click via addEventListener (JS-4).
+     CARD 1: CDFD (primary)
+     CARD 2: M.Sc. Dissertation (secondary)
+     Add more cards by duplicating an .exp-card block.
+     ============================================================ -->
+<section id="research">
+  <div class="sw">
+    <p class="sec-label">Research</p>
+    <h2 class="sec-title">Experience</h2>
+    <div class="divider"></div>
+
+    <!-- CARD 1: CDFD — edit title, tag, problem, outcomes, narrative, insight -->
+    <div class="exp-card reveal" id="card-cdfd">
+      <div class="exp-header">
+        <div>
+          <p class="exp-tag">CDFD, Hyderabad · Project Associate · Mar 2024 – Feb 2026</p>
+          <h3 class="exp-title">Protease-mediated regulation of metabolic flux in <em>Candida glabrata</em></h3>
+          <p class="exp-problem">How does a GPI-anchored aspartyl protease regulate metabolic adaptation under host-induced stress?</p>
+        </div>
+        <div class="exp-toggle"><span>Detail</span><em class="t-arr">↓</em></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-inner">
+          <ul class="exp-outcomes">
+            <li>Established interaction between CgYps1 and key metabolic enzymes in glycolysis and the pentose phosphate pathway.</li>
+            <li>Purified catalytically active CgYps1 via <em>Pichia pastoris</em> expression system and FPLC/SEC; >90% purity confirmed by SDS-PAGE.</li>
+            <li>Generated site-directed mutagenesis constructs and performed in vitro binding and cleavage assays to map functional interaction domains.</li>
+            <li>Generated dual-species RNA-seq datasets from macrophage–Candida infection models; contributed to pathway enrichment and differential expression analysis.</li>
+            <li>Executed in vivo virulence studies in murine models.</li>
+            <li>Provided evidence for a proteolytic layer regulating carbon metabolic flux under stress — distinct from transcriptional control alone.</li>
+          </ul>
+          <div class="exp-narrative">
+            I investigated how GPI-anchored aspartyl proteases regulate metabolic state transitions in <em>Candida glabrata</em> under host-mimicking stress. Focusing on CgYps1, I characterised its interaction with glycolytic and pentose phosphate pathway enzymes using protein purification, mutagenesis, and cleavage assays. These findings point toward a proteolytic regulatory layer over carbon flux — a mechanism distinct from transcriptional adaptation.
+            <div class="exp-insight">
+              Metabolic adaptation in <em>Candida glabrata</em> may be regulated at the level of proteolytic control, not just transcriptional change.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2: M.Sc. Dissertation -->
+    <div class="exp-card reveal" id="card-msc">
+      <div class="exp-header">
+        <div>
+          <p class="exp-tag">Kakatiya University · M.Sc. Dissertation · Oct 2022 – Apr 2023</p>
+          <h3 class="exp-title">CRISPR/Cas9-mediated knockout of <em>PDS</em> in <em>Solanum melongena</em></h3>
+          <p class="exp-problem">Can CRISPR/Cas9 be validated as an effective gene editing approach for the <em>PDS</em> locus in brinjal via Agrobacterium-mediated transformation?</p>
+        </div>
+        <div class="exp-toggle"><span>Detail</span><em class="t-arr">↓</em></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-inner">
+          <ul class="exp-outcomes">
+            <li>Designed a CRISPR/Cas9 knockout vector targeting the <em>PDS</em> (Phytoene desaturase) gene in <em>Solanum melongena</em> L.</li>
+            <li>Validated CRISPR/Cas9 editing efficacy via Agrobacterium-mediated plant transformation.</li>
+          </ul>
+          <div class="exp-narrative">
+            Working under Dr. Radhika Tippani, this project applied CRISPR/Cas9 methodology to a plant system, building foundational competency in molecular cloning, vector design, and plant transformation workflows.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PUBLICATION SECTION
+     Edit title, authors, badge text below
+     Your name "Singh, A." is bolded in the author list
+     ============================================================ -->
+<section id="publication">
+  <div class="sw">
+    <p class="sec-label">Publications</p>
+    <h2 class="sec-title">Research Output</h2>
+    <div class="divider"></div>
+    <div class="pub-card reveal">
+      <p class="pub-title">Role of glycosylphosphatidylinositol (GPI)-anchored aspartyl proteases in the pathobiology of <em>Candida glabrata</em></p>
+      <p class="pub-authors">Sarowgi, A., <strong>Singh, A.</strong>, & Kaur, R.</p>
+      <span class="pub-badge">Manuscript in preparation · Expected submission: late 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SKILLS SECTION
+     Five categories. Add/remove .tag spans freely.
+     Edit skills-caveat text or delete when no longer needed.
+     ============================================================ -->
+<section id="skills">
+  <div class="sw">
+    <p class="sec-label">Methods</p>
+    <h2 class="sec-title">Skills</h2>
+    <div class="divider"></div>
+    <div class="skills-grid reveal">
+
+      <!-- Category 1: Experimental Systems -->
+      <div>
+        <p class="sk-cat">Experimental Systems</p>
+        <div class="tag-wrap">
+          <span class="tag">Microbial culture</span>
+          <span class="tag">Mammalian cell lines</span>
+          <span class="tag">Host–pathogen models</span>
+          <span class="tag">Infection assays</span>
+          <span class="tag">Murine models</span>
+          <span class="tag">Plant tissue culture</span>
+        </div>
+      </div>
+
+      <!-- Category 2: Molecular & Genetic Manipulation -->
+      <div>
+        <p class="sk-cat">Molecular & Genetic Manipulation</p>
+        <div class="tag-wrap">
+          <span class="tag">CRISPR/Cas9</span>
+          <span class="tag">Site-directed mutagenesis</span>
+          <span class="tag">Molecular cloning</span>
+          <span class="tag">Gene knockout</span>
+          <span class="tag">Agrobacterium transformation</span>
+          <span class="tag">Yeast transformation</span>
+          <span class="tag">Electroporation</span>
+          <span class="tag">PCR</span>
+        </div>
+      </div>
+
+      <!-- Category 3: Protein & Biochemical Analysis -->
+      <div>
+        <p class="sk-cat">Protein & Biochemical Analysis</p>
+        <div class="tag-wrap">
+          <span class="tag">IMAC / Ni-NTA</span>
+          <span class="tag">SEC / FPLC (ÄKTA)</span>
+          <span class="tag">SDS-PAGE</span>
+          <span class="tag">Western blotting</span>
+          <span class="tag">Co-immunoprecipitation</span>
+          <span class="tag">Cleavage assays</span>
+          <span class="tag">ELISA</span>
+          <span class="tag">FACS</span>
+          <span class="tag">Immunofluorescence</span>
+        </div>
+      </div>
+
+      <!-- Category 4: Data & Computational Analysis -->
+      <div>
+        <p class="sk-cat">Data & Computational Analysis</p>
+        <div class="tag-wrap">
+          <span class="tag">LC-MS/MS</span>
+          <span class="tag">RNA-seq (basic)</span>
+          <span class="tag">AlphaFold</span>
+          <span class="tag">PyMOL</span>
+          <span class="tag">AutoDock</span>
+          <span class="tag">GraphPad Prism</span>
+          <span class="tag">RStudio (beginner)</span>
+          <span class="tag">AI-assisted scripting</span>
+        </div>
+      </div>
+
+      <!-- Category 5: Research Design & Integration -->
+      <div>
+        <p class="sk-cat">Research Design & Integration</p>
+        <div class="tag-wrap">
+          <span class="tag">Experimental design</span>
+          <span class="tag">Multi-modal data integration</span>
+          <span class="tag">Workflow automation</span>
+          <span class="tag">Metabolomics integration</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- CAVEAT: remove or update as computational skills grow -->
+    <p class="skills-caveat reveal">Computational tools listed reflect hands-on beginner proficiency with strong conceptual grounding. Comfortable executing bioinformatics workflows under guidance and actively developing independent capacity.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CREDENTIALS SECTION
+     Image cards: click thumbnail to open lightbox.
+     No download button — by design.
+     RIGHT-CLICK on certificate images is disabled (JS-6).
+
+     IMPORTANT — IMAGE FILENAMES:
+     Replace "ACM_2025.png" and "CDFD_SEF.png" below
+     with your actual PNG filenames if they differ.
+     Both files must be in repo root.
+     ============================================================ -->
+<section id="credentials">
+  <div class="sw">
+    <p class="sec-label">Credentials</p>
+    <h2 class="sec-title">Recognition & Certifications</h2>
+    <div class="divider"></div>
+    <div class="cred-grid">
+
+      <!-- GATE 2023 — text-only card, no image file needed -->
+      <div class="cred-card text-only reveal">
+        <p class="cred-tag">National Examination · 2023</p>
+        <p class="cred-big">Top 10%</p>
+        <p class="cred-title">GATE 2023 — Biotechnology</p>
+        <p class="cred-meta">AIR 1197 · Graduate Aptitude Test in Engineering · Government of India</p>
+      </div>
+
+      <!-- ACM 2025 — IMAGE: rename ACM_2025.png if your file is named differently -->
+      <div class="cred-card reveal">
+        <div class="cred-img-wrap" data-full="ACM_2025.png">
+          <img src="ACM_2025.png" alt="Asia Chromatin Meeting 2025 Certificate" class="cred-img"/>
+        </div>
+        <div class="cred-info">
+          <p class="cred-tag">Poster Presentation · October 2025</p>
+          <p class="cred-title">9th Asia Chromatin Meeting</p>
+          <p class="cred-meta">IISER Pune · Convener: Prof. Kundan Sengupta</p>
+        </div>
+      </div>
+
+      <!-- CDFD SEF — IMAGE: rename CDFD_SEF.png if your file is named differently -->
+      <div class="cred-card reveal">
+        <div class="cred-img-wrap" data-full="CDFD_SEF.png">
+          <img src="CDFD_SEF.png" alt="CDFD Sophisticated Equipment Facility Certificate" class="cred-img"/>
+        </div>
+        <div class="cred-info">
+          <p class="cred-tag">Instrument Certification · CDFD, Hyderabad</p>
+          <p class="cred-title">Advanced Instrumentation — SEF, CDFD</p>
+          <p class="cred-meta">Certified operation: ZEISS LSM 980 (Super-Resolution Confocal) & ÄKTA pure™ FPLC · Signed: Dr. Vinod Kumar Mishra, Head–SEF</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT SECTION — final section, dark background
+     CSS fallback for rotating line: "working on it."
+     Edit email, GitHub, LinkedIn, ORCiD links below.
+     CV download duplicated here.
+     ============================================================ -->
+<section id="contact">
+  <div class="sw">
+    <p class="sec-label">Contact</p>
+    <h2 class="sec-title">Connect</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+
+      <div>
+        <!-- Final rotating line (3): loops on "working on it." -->
+        <p class="c-final-line">Aditya Singh is <span class="fr" id="final-rt"></span></p>
+        <p class="contact-desc">Open to PhD opportunities in host–pathogen biology, fungal biology, metabolic regulation, and adjacent areas integrating computational approaches. Cold emails welcome.</p>
+        <!-- CV DOWNLOAD: contact section copy -->
+        <a href="CV_Aditya_Singh.pdf" class="cv-btn-dark" download>Download CV</a>
+      </div>
+
+      <div class="contact-links">
+
+        <!-- EMAIL -->
+        <a href="mailto:adityasinghkatihar@gmail.com" class="c-link">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          <span class="cl-lbl">Email</span>
+          <span>adityasinghkatihar@gmail.com</span>
+        </a>
+
+        <!-- GITHUB -->
+        <a href="https://github.com/adityasinghkatihar" target="_blank" rel="noopener" class="c-link">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <span class="cl-lbl">GitHub</span>
+          <span>adityasinghkatihar</span>
+        </a>
+
+        <!-- LINKEDIN -->
+        <a href="https://www.linkedin.com/in/aditya-singh-katihar/" target="_blank" rel="noopener" class="c-link">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <span class="cl-lbl">LinkedIn</span>
+          <span>aditya-singh-katihar</span>
+        </a>
+
+        <!-- ORCID -->
+        <a href="https://orcid.org/0009-0004-0685-1620" target="_blank" rel="noopener" class="c-link">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <span class="cl-lbl">ORCiD</span>
+          <span>0009-0004-0685-1620</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER — edit year if needed
+     ============================================================ -->
+<footer id="privacy">
+  <span>© 2026 Aditya Singh</span>
+  <span><a href="#privacy">Privacy Policy</a> · Anonymised session analytics only. No personal data stored or sold.</span>
+</footer>
+
+<!-- ============================================================
+     LIGHTBOX — rendered by credential card clicks
+     ============================================================ -->
+<div id="lightbox">
+  <div id="lb-overlay"></div>
+  <div id="lb-content">
+    <button id="lb-close">Close ✕</button>
+    <img id="lb-img" src="" alt="Certificate"/>
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+     JS-1 : Rotating text engine (heroPhrases, lockedPhrases, finalPhrase)
+     JS-2 : Scroll — nav + locked bar trigger
+     JS-3 : Active nav highlight
+     JS-4 : Research card expand/collapse (addEventListener)
+     JS-5 : Cookie consent
+     JS-6 : Credentials lightbox + right-click disable
+     JS-7 : Scroll reveal
+     JS-8 : Analytics tracker (placeholder — wire endpoint later)
+     ============================================================ -->
+<script>
+// ── JS-1: ROTATING TEXT ──────────────────────────────────────
+// (1) Hero only — edit phrases here
+const heroPhrases = [
+  "a biologist. Mostly.",
+  "still in the lab. Technically.",
+  "somewhere between a pipette and a Python script."
+];
+// (2) Locked bar — edit phrases here
+const lockedPhrases = [
+  "a biologist. Mostly.",
+  "still in the lab. Technically.",
+  "somewhere between a pipette and a Python script.",
+  "a generalist in a world of specialists.",
+  "convinced the answer is in the data.",
+  "unconvinced by clean answers."
+];
+// (3) Contact section — single phrase, loops
+const finalPhrase = "working on it.";
+
+function typeWriter(el, text, onDone) {
+  el.textContent = '';
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      const ch = text[i - 1];
+      // Slightly slower, human-like — longer pauses at punctuation
+      const d = (ch === '.' || ch === ',' || ch === '–')
+        ? 180 + Math.random() * 120
+        : 55 + Math.random() * 65;
+      setTimeout(type, d);
+    } else { setTimeout(onDone, 2000); }
+  }
+  type();
+}
+function eraseWriter(el, onDone) {
+  function erase() {
+    if (el.textContent.length > 0) {
+      el.textContent = el.textContent.slice(0, -1);
+      setTimeout(erase, 32 + Math.random() * 18);
+    } else { setTimeout(onDone, 350); }
+  }
+  erase();
+}
+function startCycle(el, phrases) {
+  let i = 0;
+  el.classList.add('on');
+  function next() {
+    typeWriter(el, phrases[i], () =>
+      eraseWriter(el, () => { i = (i + 1) % phrases.length; next(); })
+    );
+  }
+  next();
+}
+function startFinal(el, phrase) {
+  el.classList.add('on');
+  (function loop() {
+    typeWriter(el, phrase, () => setTimeout(() => eraseWriter(el, loop), 2500));
+  })();
+}
+
+startCycle(document.getElementById('hero-rt'), heroPhrases);
+startCycle(document.getElementById('locked-rt'), lockedPhrases);
+startFinal(document.getElementById('final-rt'), finalPhrase);
+
+// ── JS-2: SCROLL — NAV + LOCKED BAR ─────────────────────────
+const navbar   = document.getElementById('navbar');
+const lockedBar = document.getElementById('locked-bar');
+const scrollHint = document.getElementById('scroll-hint');
+const heroEl   = document.getElementById('hero');
+let heroH = heroEl.offsetHeight;
+window.addEventListener('resize', () => { heroH = heroEl.offsetHeight; });
+
+window.addEventListener('scroll', () => {
+  const past = window.scrollY > heroH * 0.8;
+  navbar.classList.toggle('visible', past);
+  scrollHint.style.opacity = past ? '0' : '1';
+
+  // Hide locked bar when contact section enters view
+  const contactTop = document.getElementById('contact').getBoundingClientRect().top;
+  const showLocked = past && contactTop > 100;
+  lockedBar.classList.toggle('visible', showLocked);
+});
+
+// ── JS-3: ACTIVE NAV HIGHLIGHT ───────────────────────────────
+const secIds = ['about','research','publication','skills','credentials','contact'];
+const navAs  = document.querySelectorAll('.nav-links a');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+secIds.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+
+// ── JS-4: RESEARCH CARD EXPAND/COLLAPSE ──────────────────────
+// Uses addEventListener — no inline onclick anywhere
+document.querySelectorAll('.exp-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.closest('.exp-card').classList.toggle('open');
+  });
+});
+
+// ── JS-5: COOKIE CONSENT ─────────────────────────────────────
+const banner = document.getElementById('cookie-banner');
+function setCookieConsent(val) {
+  localStorage.setItem('cookie-consent', val);
+  banner.style.display = 'none';
+  if (val === 'accepted') initAnalytics();
+}
+(function() {
+  const s = localStorage.getItem('cookie-consent');
+  if (s) { banner.style.display = 'none'; if (s === 'accepted') initAnalytics(); }
+})();
+
+// ── JS-6: LIGHTBOX + RIGHT-CLICK DISABLE ────────────────────
+const lb     = document.getElementById('lightbox');
+const lbImg  = document.getElementById('lb-img');
+
+document.querySelectorAll('.cred-img-wrap').forEach(wrap => {
+  wrap.addEventListener('click', () => {
+    lbImg.src = wrap.dataset.full;
+    lb.classList.add('active');
+  });
+});
+document.getElementById('lb-close').addEventListener('click', () => lb.classList.remove('active'));
+document.getElementById('lb-overlay').addEventListener('click', () => lb.classList.remove('active'));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('active'); });
+// Disable right-click on certificate images
+document.addEventListener('contextmenu', e => {
+  if (e.target.classList.contains('cred-img') || e.target.id === 'lb-img') e.preventDefault();
+});
+
+// ── JS-7: SCROLL REVEAL ──────────────────────────────────────
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ── JS-8: ANALYTICS (PLACEHOLDER) ────────────────────────────
+// Replace with your deployed Google Apps Script URL when ready
+const SHEETS_ENDPOINT = 'YOUR_GOOGLE_APPS_SCRIPT_ENDPOINT_HERE';
+const sessionStart = Date.now();
+const secTimes = {};
+let curSec = 'hero', secStart = Date.now();
+let analyticsOn = false;
+
+function initAnalytics() {
+  analyticsOn = true;
+  const tObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const now = Date.now();
+        secTimes[curSec] = (secTimes[curSec] || 0) + (now - secStart);
+        curSec = e.target.id || 'unknown';
+        secStart = now;
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('section').forEach(s => tObs.observe(s));
+  window.addEventListener('beforeunload', () => {
+    if (!analyticsOn || SHEETS_ENDPOINT.includes('YOUR_')) return;
+    const now = Date.now();
+    secTimes[curSec] = (secTimes[curSec] || 0) + (now - secStart);
+    navigator.sendBeacon(SHEETS_ENDPOINT, JSON.stringify({
+      timestamp: new Date().toISOString(),
+      totalTime: Math.round((now - sessionStart) / 1000),
+      referrer: document.referrer || 'direct',
+      sectionTimes: Object.fromEntries(Object.entries(secTimes).map(([k,v]) => [k, Math.round(v/1000)]))
+    }));
+  });
+}
+</script>
+</body>
+</html>
