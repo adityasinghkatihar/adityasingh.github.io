@@ -79,21 +79,25 @@ window.addEventListener('scroll', () => {
   lockedBar.classList.toggle('visible', showLocked);
 });
 
+const supportsIO = 'IntersectionObserver' in window;
+
 const secIds = ['about', 'research', 'publication', 'skills', 'credentials', 'contact'];
 const navAs = document.querySelectorAll('.nav-links a');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      navAs.forEach((a) => a.classList.remove('active'));
-      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-      if (a) a.classList.add('active');
-    }
+if (supportsIO) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        navAs.forEach((a) => a.classList.remove('active'));
+        const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  secIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
   });
-}, { threshold: 0.3 });
-secIds.forEach((id) => {
-  const el = document.getElementById(id);
-  if (el) io.observe(el);
-});
+}
 
 document.querySelectorAll('.exp-header').forEach((header) => {
   header.addEventListener('click', () => {
@@ -134,12 +138,16 @@ document.addEventListener('contextmenu', (e) => {
   if (e.target.classList.contains('cred-img') || e.target.id === 'lb-img') e.preventDefault();
 });
 
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach((el) => revealObs.observe(el));
+if (supportsIO) {
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => revealObs.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+}
 
 const SHEETS_ENDPOINT = 'YOUR_GOOGLE_APPS_SCRIPT_ENDPOINT_HERE';
 const sessionStart = Date.now();
@@ -150,17 +158,19 @@ let analyticsOn = false;
 
 function initAnalytics() {
   analyticsOn = true;
-  const tObs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        const now = Date.now();
-        secTimes[curSec] = (secTimes[curSec] || 0) + (now - secStart);
-        curSec = e.target.id || 'unknown';
-        secStart = now;
-      }
-    });
-  }, { threshold: 0.4 });
-  document.querySelectorAll('section').forEach((s) => tObs.observe(s));
+  if (supportsIO) {
+    const tObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const now = Date.now();
+          secTimes[curSec] = (secTimes[curSec] || 0) + (now - secStart);
+          curSec = e.target.id || 'unknown';
+          secStart = now;
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('section').forEach((s) => tObs.observe(s));
+  }
   window.addEventListener('beforeunload', () => {
     if (!analyticsOn || SHEETS_ENDPOINT.includes('YOUR_')) return;
     const now = Date.now();
