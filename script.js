@@ -1,3 +1,9 @@
+// ============================================================
+// script.js - Aditya Singh Portfolio
+// UI only: typewriter, scroll/nav, accordions, lightbox, reveal
+// Cookie consent + analytics live entirely in analytics.js
+// ============================================================
+
 const heroPhrases = [
   'a biologist. Mostly.',
   'still in the lab. Technically.',
@@ -61,28 +67,27 @@ startCycle(document.getElementById('hero-rt'), heroPhrases);
 startCycle(document.getElementById('locked-rt'), lockedPhrases);
 startFinal(document.getElementById('final-rt'), finalPhrase);
 
-const navbar = document.getElementById('navbar');
+// ── Navbar + scroll behaviour ────────────────────────────────
+const navbar    = document.getElementById('navbar');
 const lockedBar = document.getElementById('locked-bar');
 const scrollHint = document.getElementById('scroll-hint');
-const heroEl = document.getElementById('hero');
+const heroEl    = document.getElementById('hero');
 let heroH = heroEl.offsetHeight;
-window.addEventListener('resize', () => {
-  heroH = heroEl.offsetHeight;
-});
+window.addEventListener('resize', () => { heroH = heroEl.offsetHeight; });
 
 window.addEventListener('scroll', () => {
   const past = window.scrollY > heroH * 0.8;
   navbar.classList.toggle('visible', past);
   scrollHint.style.opacity = past ? '0' : '1';
   const contactTop = document.getElementById('contact').getBoundingClientRect().top;
-  const showLocked = past && contactTop > 100;
-  lockedBar.classList.toggle('visible', showLocked);
+  lockedBar.classList.toggle('visible', past && contactTop > 100);
 });
 
+// ── Active nav link highlighting ─────────────────────────────
 const supportsIO = 'IntersectionObserver' in window;
-
 const secIds = ['about', 'research', 'publication', 'skills', 'credentials', 'contact'];
-const navAs = document.querySelectorAll('.nav-links a');
+const navAs  = document.querySelectorAll('.nav-links a');
+
 if (supportsIO) {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -99,29 +104,15 @@ if (supportsIO) {
   });
 }
 
+// ── Experience card accordions ───────────────────────────────
 document.querySelectorAll('.exp-header').forEach((header) => {
   header.addEventListener('click', () => {
     header.closest('.exp-card').classList.toggle('open');
   });
 });
 
-const banner = document.getElementById('cookie-banner');
-function setCookieConsent(val) {
-  localStorage.setItem('cookie-consent', val);
-  banner.style.display = 'none';
-  if (val === 'accepted') initAnalytics();
-}
-window.setCookieConsent = setCookieConsent;
-
-(() => {
-  const s = localStorage.getItem('cookie-consent');
-  if (s) {
-    banner.style.display = 'none';
-    if (s === 'accepted') initAnalytics();
-  }
-})();
-
-const lb = document.getElementById('lightbox');
+// ── Lightbox ─────────────────────────────────────────────────
+const lb    = document.getElementById('lightbox');
 const lbImg = document.getElementById('lb-img');
 document.querySelectorAll('.cred-img-wrap').forEach((wrap) => {
   wrap.addEventListener('click', () => {
@@ -138,6 +129,7 @@ document.addEventListener('contextmenu', (e) => {
   if (e.target.classList.contains('cred-img') || e.target.id === 'lb-img') e.preventDefault();
 });
 
+// ── Scroll-reveal ────────────────────────────────────────────
 if (supportsIO) {
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -148,38 +140,6 @@ if (supportsIO) {
 } else {
   document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
 }
-
-const SHEETS_ENDPOINT = 'YOUR_GOOGLE_APPS_SCRIPT_ENDPOINT_HERE';
-const sessionStart = Date.now();
-const secTimes = {};
-let curSec = 'hero';
-let secStart = Date.now();
-let analyticsOn = false;
-
-function initAnalytics() {
-  analyticsOn = true;
-  if (supportsIO) {
-    const tObs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const now = Date.now();
-          secTimes[curSec] = (secTimes[curSec] || 0) + (now - secStart);
-          curSec = e.target.id || 'unknown';
-          secStart = now;
-        }
-      });
-    }, { threshold: 0.4 });
-    document.querySelectorAll('section').forEach((s) => tObs.observe(s));
-  }
-  window.addEventListener('beforeunload', () => {
-    if (!analyticsOn || SHEETS_ENDPOINT.includes('YOUR_')) return;
-    const now = Date.now();
-    secTimes[curSec] = (secTimes[curSec] || 0) + (now - secStart);
-    navigator.sendBeacon(SHEETS_ENDPOINT, JSON.stringify({
-      timestamp: new Date().toISOString(),
-      totalTime: Math.round((now - sessionStart) / 1000),
-      referrer: document.referrer || 'direct',
-      sectionTimes: Object.fromEntries(Object.entries(secTimes).map(([k, v]) => [k, Math.round(v / 1000)]))
-    }));
-  });
-}
+// ── Analytics (in analytics.js) ───────────────────────────────
+// Handles consent, pageview, section view time, and click tracking
+// ==================================
