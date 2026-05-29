@@ -123,6 +123,32 @@
       </ul><div class="exp-narrative">Working under Dr. Radhika Tippani, this project applied CRISPR/Cas9 methodology to a plant system, building foundational competency in molecular cloning, vector design, and plant transformation workflows.</div></div></div>
     </div>
   </div>
+  <div class="exp-card reveal" id="card-scrna">
+      <div class="exp-header">
+        <div>
+          <p class="exp-tag">Independent Project · Python, Scanpy, FastAPI · 2025–2026</p>
+          <h3 class="exp-title">scRNA-seq Preprocessing &amp; Analysis Pipeline</h3>
+          <p class="exp-problem">Can a bench biologist build a rigorous, end-to-end single-cell analysis service — and understand every decision made along the way?</p>
+        </div>
+        <div class="exp-toggle"><span>Detail</span><em class="t-arr">↓</em></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-inner">
+          <ul class="exp-outcomes">
+            <li>Built a modular scRNA-seq analysis service covering QC filtering, normalisation, HVG selection, PCA/UMAP/Leiden clustering, CellTypist annotation, and per-cluster pathway enrichment (gseapy/Enrichr).</li>
+            <li>Architected an AnnData-based data contract preserving raw counts (<code>adata.raw</code>) and KNN graph connectivity (<code>adata.obsp</code>) for downstream compatibility with scVelo and pySCENIC.</li>
+            <li>Implemented an asynchronous REST API (FastAPI) with background job execution and status polling — allowing large datasets to be processed without HTTP timeout failures.</li>
+            <li>Validated on the 10x PBMC3k dataset; diagnosed and resolved a pathway result serialisation bug in HDF5. 15/15 unit tests passing.</li>
+          </ul>
+          <div class="exp-narrative">
+            An independent project undertaken to build genuine computational fluency — not surface familiarity. Every biological decision (clustering resolution, annotation thresholds, enrichment parameters) was made independently. Python implementation used AI coding assistance (Anthropic Claude), which is disclosed fully in the repository.
+            <div class="exp-insight">
+              The goal was not to produce a paper but to understand the method well enough to critique it. That required building it.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 
 <section id="publication"><div class="sw"><p class="sec-label">Publications</p><h2 class="sec-title">Research Output</h2><div class="divider"></div><div class="pub-card reveal"><p class="pub-title">Role of glycosylphosphatidylinositol (GPI)-anchored aspartyl proteases in the pathobiology of <em>Candida glabrata</em></p><p class="pub-authors">Sarowgi, A., <strong>Singh, A.</strong>, & Kaur, R.</p><span class="pub-badge">Manuscript in preparation · Expected submission: late 2026</span></div></div></section>
@@ -131,7 +157,7 @@
 <div><p class="sk-cat">Experimental Systems</p><div class="tag-wrap"><span class="tag">Microbial culture</span><span class="tag">Mammalian cell lines</span><span class="tag">Host–pathogen models</span><span class="tag">Infection assays</span><span class="tag">Murine models</span><span class="tag">Plant tissue culture</span></div></div>
 <div><p class="sk-cat">Molecular & Genetic Manipulation</p><div class="tag-wrap"><span class="tag">CRISPR/Cas9</span><span class="tag">Site-directed mutagenesis</span><span class="tag">Molecular cloning</span><span class="tag">Gene knockout</span><span class="tag">Agrobacterium transformation</span><span class="tag">Yeast transformation</span><span class="tag">Electroporation</span><span class="tag">PCR</span></div></div>
 <div><p class="sk-cat">Protein & Biochemical Analysis</p><div class="tag-wrap"><span class="tag">IMAC / Ni-NTA</span><span class="tag">SEC / FPLC (ÄKTA)</span><span class="tag">SDS-PAGE</span><span class="tag">Western blotting</span><span class="tag">Co-immunoprecipitation</span><span class="tag">Cleavage assays</span><span class="tag">ELISA</span><span class="tag">FACS</span><span class="tag">Immunofluorescence</span></div></div>
-<div><p class="sk-cat">Data & Computational Analysis</p><div class="tag-wrap"><span class="tag">LC-MS/MS</span><span class="tag">RNA-seq (basic)</span><span class="tag">AlphaFold</span><span class="tag">PyMOL</span><span class="tag">AutoDock</span><span class="tag">GraphPad Prism</span><span class="tag">RStudio (beginner)</span><span class="tag">AI-assisted scripting</span></div></div>
+<div><p class="sk-cat">Data & Computational Analysis</p><div class="tag-wrap"><span class="tag">LC-MS/MS</span><span class="tag">scRNA-seq · Scanpy / AnnData</span><span class="tag">AlphaFold</span><span class="tag">PyMOL</span><span class="tag">AutoDock</span><span class="tag">GraphPad Prism</span><span class="tag">RStudio (beginner)</span><span class="tag">AI-assisted scripting</span></div></div>
 <div><p class="sk-cat">Research Design & Integration</p><div class="tag-wrap"><span class="tag">Experimental design</span><span class="tag">Multi-modal data integration</span><span class="tag">Workflow automation</span><span class="tag">Metabolomics integration</span></div></div>
 </div><p class="skills-caveat reveal">Computational tools listed reflect hands-on beginner proficiency with strong conceptual grounding. Comfortable executing bioinformatics workflows under guidance and actively developing independent capacity.</p></div></section>
 
